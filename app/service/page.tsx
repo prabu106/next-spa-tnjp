@@ -108,25 +108,27 @@ function Header() {
           </div>
         </div>
 
-        <nav className="hidden items-center gap-8 text-sm font-semibold lg:flex">
-          {navItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={`transition ${
-                item.href === "/service"
-                  ? "border-b-2 border-[#f6a028] pb-1 text-white"
-                  : "text-white/90 hover:text-[#ffd18a]"
-              }`}
-            >
-              {item.label}
-            </Link>
-          ))}
-        </nav>
+        <div className="flex items-center gap-6 lg:gap-8">
+          <nav className="hidden items-center gap-8 text-base font-bold lg:flex">
+            {navItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`transition ${
+                  item.href === "/service"
+                    ? "border-b-2 border-[#f6a028] pb-1 text-white"
+                    : "text-white/95 hover:text-[#ffd18a]"
+                }`}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
 
-        <button className="rounded-md bg-[linear-gradient(180deg,#f6a028_0%,#ea7d16_100%)] px-5 py-2.5 text-sm font-bold text-white shadow-[0_8px_20px_rgba(234,125,22,0.35)] transition hover:brightness-105">
-          Login
-        </button>
+          <button className="rounded-md bg-[linear-gradient(180deg,#f6a028_0%,#ea7d16_100%)] px-5 py-2.5 text-sm font-bold text-white shadow-[0_8px_20px_rgba(234,125,22,0.35)] transition hover:brightness-105">
+            Login
+          </button>
+        </div>
       </div>
     </header>
   );
