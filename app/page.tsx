@@ -5,8 +5,8 @@ import { CallToActionSection } from "./service/page";
 
 const navItems = [
   { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
-  { label: "Project", href: "/project" },
+  { label: "About Us", href: "/about" },
+  { label: "Projects", href: "/project" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -185,7 +185,7 @@ function HeroSection() {
 
 function FeatureSection() {
   return (
-    <section className="relative z-10 -mt-1 px-6 pb-10 lg:px-10">
+    <section className="relative z-10 mt-6 px-6 pb-10 lg:mt-8 lg:px-10">
       <div className="mx-auto grid max-w-6xl gap-4 md:grid-cols-3">
         {featureCards.map((card) => (
           <FeatureCard key={card.title} {...card} />

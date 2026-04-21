@@ -3,8 +3,8 @@ import Image from "next/image";
 
 const navItems = [
   { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
-  { label: "Project", href: "/project" },
+  { label: "About Us", href: "/about" },
+  { label: "Projects", href: "/project" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -64,8 +64,8 @@ const projects = [
 
 const quickLinks = [
   { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
-  { label: "Project", href: "/project" },
+  { label: "About Us", href: "/about" },
+  { label: "Projects", href: "/project" },
   { label: "Contact", href: "/contact" },
 ];
 

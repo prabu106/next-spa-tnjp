@@ -1,17 +1,20 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
-import type { ComponentType } from "react";
+import { useState } from "react";
+import type { ChangeEvent, ComponentType, FormEvent } from "react";
 
 const navItems = [
   { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
-  { label: "Project", href: "/project" },
+  { label: "About Us", href: "/about" },
+  { label: "Projects", href: "/project" },
   { label: "Contact", href: "/contact" },
 ];
 const quickLinks = [
   { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
-  { label: "Project", href: "/project" },
+  { label: "About Us", href: "/about" },
+  { label: "Projects", href: "/project" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -50,41 +53,21 @@ export default function ContactPage() {
   );
 }
 
-function ContactHeader1() {
-  return (
-    <header className="bg-[linear-gradient(180deg,#103a78_0%,#0d326a_100%)] text-white shadow-lg">
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-5 lg:px-10">
-        <div className="flex items-center gap-3">
-          <CubeLogo />
-          <div className="text-xl font-bold tracking-tight sm:text-2xl">
-            <span className="text-white">Student </span>
-            <span className="text-[#f5a025]">Project Centre</span>
-          </div>
-        </div>
+type ContactFormValues = {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+};
 
-        <nav className="hidden items-center gap-8 text-base font-bold lg:flex">
-          {navItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={`border-b-2 pb-1 transition ${
-                item.href === "/contact"
-                  ? "border-[#f5a025] text-white"
-                  : "border-transparent text-white/95 hover:text-[#ffd189]"
-              }`}
-            >
-              {item.label}
-            </Link>
-          ))}
-        </nav>
+type ContactFormErrors = Partial<Record<keyof ContactFormValues, string>>;
 
-        <button className="rounded-md bg-[linear-gradient(180deg,#f7a32d_0%,#ef8419_100%)] px-5 py-2.5 text-sm font-bold text-white shadow-[0_10px_22px_rgba(239,132,25,0.35)]">
-          Login
-        </button>
-      </div>
-    </header>
-  );
-}
+const initialFormValues: ContactFormValues = {
+  name: "",
+  email: "",
+  subject: "",
+  message: "",
+};
 
 function ContactHeader() {
   return (
@@ -162,6 +145,66 @@ function ContactHero() {
 }
 
 function ContactSection() {
+  const [values, setValues] = useState<ContactFormValues>(initialFormValues);
+  const [errors, setErrors] = useState<ContactFormErrors>({});
+  const [submitMessage, setSubmitMessage] = useState("");
+
+  function validate(nextValues: ContactFormValues) {
+    const nextErrors: ContactFormErrors = {};
+
+    if (!nextValues.name.trim()) {
+      nextErrors.name = "Please enter your name.";
+    }
+
+    if (!nextValues.email.trim()) {
+      nextErrors.email = "Please enter your email address.";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(nextValues.email)) {
+      nextErrors.email = "Please enter a valid email address.";
+    }
+
+    if (!nextValues.subject.trim()) {
+      nextErrors.subject = "Please enter a subject.";
+    }
+
+    if (!nextValues.message.trim()) {
+      nextErrors.message = "Please enter your message.";
+    } else if (nextValues.message.trim().length < 20) {
+      nextErrors.message = "Message must be at least 20 characters long.";
+    }
+
+    return nextErrors;
+  }
+
+  function handleChange(
+    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) {
+    const { name, value } = event.target;
+    const nextValues = {
+      ...values,
+      [name]: value,
+    };
+
+    setValues(nextValues);
+    setErrors(validate(nextValues));
+    setSubmitMessage("");
+  }
+
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    const nextErrors = validate(values);
+    setErrors(nextErrors);
+
+    if (Object.keys(nextErrors).length > 0) {
+      setSubmitMessage("Please fix the highlighted fields before submitting.");
+      return;
+    }
+
+    setSubmitMessage("Your message has been validated and is ready to send.");
+    setValues(initialFormValues);
+    setErrors({});
+  }
+
   return (
     <section className="mx-auto max-w-7xl px-6 py-10 lg:px-10 lg:py-12">
       <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
@@ -182,19 +225,60 @@ function ContactSection() {
 
         <div className="rounded-2xl border border-[#dce3ef] bg-white p-6 shadow-[0_14px_32px_rgba(18,44,97,0.1)] lg:p-10">
           <SectionHeading title="Send Us a Message" />
-          <form className="mt-6 space-y-4">
+          <form className="mt-6 space-y-4" noValidate onSubmit={handleSubmit}>
             <div className="grid gap-4 md:grid-cols-2">
-              <Input placeholder="Your Name" />
-              <Input placeholder="Email Address" type="email" />
+              <Input
+                name="name"
+                placeholder="Your Name"
+                value={values.name}
+                onChange={handleChange}
+                error={errors.name}
+              />
+              <Input
+                name="email"
+                placeholder="Email Address"
+                type="email"
+                value={values.email}
+                onChange={handleChange}
+                error={errors.email}
+              />
             </div>
-            <Input placeholder="Subject" />
-            <textarea
-              rows={7}
-              placeholder="Message"
-              className="w-full rounded-md border border-[#d5deeb] bg-white px-4 py-4 text-base text-[#243250] outline-none transition placeholder:text-[#7d8aa8] focus:border-[#2a5cac]"
+            <Input
+              name="subject"
+              placeholder="Subject"
+              value={values.subject}
+              onChange={handleChange}
+              error={errors.subject}
             />
+            <div>
+              <textarea
+                name="message"
+                rows={7}
+                placeholder="Message"
+                value={values.message}
+                onChange={handleChange}
+                className={`w-full rounded-md border bg-white px-4 py-4 text-base text-[#243250] outline-none transition placeholder:text-[#7d8aa8] focus:border-[#2a5cac] ${
+                  errors.message ? "border-[#de3f32]" : "border-[#d5deeb]"
+                }`}
+              />
+              {errors.message ? (
+                <p className="mt-2 text-sm font-medium text-[#de3f32]">{errors.message}</p>
+              ) : null}
+            </div>
+            {submitMessage ? (
+              <p
+                className={`text-sm font-semibold ${
+                  Object.keys(errors).length > 0 ? "text-[#de3f32]" : "text-[#1e7a43]"
+                }`}
+              >
+                {submitMessage}
+              </p>
+            ) : null}
             <div className="pt-2 text-center md:text-left">
-              <button className="inline-flex items-center justify-center gap-3 rounded-md bg-[linear-gradient(180deg,#1c57a9_0%,#134487_100%)] px-8 py-4 text-xl font-bold text-white shadow-[0_10px_24px_rgba(19,68,135,0.24)]">
+              <button
+                type="submit"
+                className="inline-flex items-center justify-center gap-3 rounded-md bg-[linear-gradient(180deg,#1c57a9_0%,#134487_100%)] px-8 py-4 text-xl font-bold text-white shadow-[0_10px_24px_rgba(19,68,135,0.24)]"
+              >
                 Send Message
                 <PaperPlaneIcon className="h-5 w-5" />
               </button>
@@ -383,18 +467,34 @@ function SectionHeading({ title }: { title: string }) {
 }
 
 function Input({
+  name,
   placeholder,
   type = "text",
+  value,
+  onChange,
+  error,
 }: {
+  name: string;
   placeholder: string;
   type?: string;
+  value: string;
+  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  error?: string;
 }) {
   return (
-    <input
-      type={type}
-      placeholder={placeholder}
-      className="w-full rounded-md border border-[#d5deeb] bg-white px-4 py-4 text-base text-[#243250] outline-none transition placeholder:text-[#7d8aa8] focus:border-[#2a5cac]"
-    />
+    <div>
+      <input
+        name={name}
+        type={type}
+        value={value}
+        onChange={onChange}
+        placeholder={placeholder}
+        className={`w-full rounded-md border bg-white px-4 py-4 text-base text-[#243250] outline-none transition placeholder:text-[#7d8aa8] focus:border-[#2a5cac] ${
+          error ? "border-[#de3f32]" : "border-[#d5deeb]"
+        }`}
+      />
+      {error ? <p className="mt-2 text-sm font-medium text-[#de3f32]">{error}</p> : null}
+    </div>
   );
 }
 

@@ -4,8 +4,8 @@ import type { ComponentType } from "react";
 
 const navItems = [
   { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
-  { label: "Project", href: "/project" },
+  { label: "About Us", href: "/about" },
+  { label: "Projects", href: "/project" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -62,8 +62,8 @@ const teamMembers = [
 
 const quickLinks = [
   { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
-  { label: "Project", href: "/project" },
+  { label: "About Us", href: "/about" },
+  { label: "Projects", href: "/project" },
   { label: "Contact", href: "/contact" },
 ];
 
