@@ -103,8 +103,8 @@ function Header() {
             <CubeLogo />
           </div>
           <div className="text-xl font-bold tracking-tight sm:text-2xl">
-            <span className="text-white">Student </span>
-            <span className="text-[#f6a028]">Project Centre</span>
+            <span className="text-white">X </span>
+            <span className="text-[#f6a028]">X X</span>
           </div>
         </div>
 
@@ -347,8 +347,8 @@ function Footer() {
             <div className="flex items-center gap-3">
               <CubeLogo />
               <div className="text-xl font-bold">
-                <span className="text-white">Student </span>
-                <span className="text-[#f6a028]">Project Centre</span>
+                <span className="text-white">X </span>
+                <span className="text-[#f6a028]">X X</span>
               </div>
             </div>
             <p className="mt-5 max-w-xs text-lg leading-8 text-white/88">
@@ -392,7 +392,7 @@ function Footer() {
               </div>
               <div className="flex items-start gap-3">
                 <MailIcon className="mt-1 h-5 w-5 shrink-0" />
-                <span>info@studentprojectcentre.com</span>
+                <span>info@XXX.com</span>
               </div>
               <div className="flex items-start gap-3">
                 <PinIcon className="mt-1 h-5 w-5 shrink-0" />
@@ -403,7 +403,7 @@ function Footer() {
         </div>
 
         <p className="pt-5 text-center text-lg text-white/90">
-          © 2025 Student Project Centre. All rights reserved.
+          © 2025 X X X. All rights reserved.
         </p>
       </div>
     </footer>

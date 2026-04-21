@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import type { ComponentType } from "react";
+import Navbar from "../components/Navbar";
 
 const navItems = [
   { label: "Home", href: "/" },
@@ -89,29 +90,13 @@ function AboutHeader() {
             <CubeLogo />
           </div>
           <div className="text-xl font-bold tracking-tight sm:text-2xl">
-            <span className="text-white">Student </span>
-            <span className="text-[#f6a028]">Project Centre</span>
+            <span className="text-white">X </span>
+            <span className="text-[#f6a028]">X X</span>
           </div>
         </div>
 
         <div className="flex items-center gap-6 lg:gap-8">
-          <nav className="hidden items-center gap-8 text-base font-bold lg:flex">
-            {navItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`transition hover:text-[#ffd18a] ${
-                  item.href === "/about" ? "border-b-2 border-white pb-1 text-white" : "text-white/95"
-                }`}
-              >
-                {item.label}
-              </Link>
-            ))}
-          </nav>
-
-          <button className="rounded-md bg-[linear-gradient(180deg,#f6a028_0%,#ea7d16_100%)] px-5 py-2.5 text-sm font-bold text-white shadow-[0_8px_20px_rgba(234,125,22,0.35)] transition hover:brightness-105">
-            Login
-          </button>
+          <Navbar />
         </div>
       </div>
     </header>
@@ -120,7 +105,7 @@ function AboutHeader() {
 
 function AboutHero() {
   return (
-    <section className="relative overflow-hidden bg-[linear-gradient(120deg,#123f82_0%,#0f3b7a_42%,#1a4f98_100%)]">
+    <section className="relative overflow-hidden bg-[url('/aboutbanner.png')] bg-cover bg-center overflow-hidden bg-[linear-gradient(120deg,#123f82_0%,#0f3b7a_42%,#1a4f98_100%)]">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(255,255,255,0.12),transparent_30%),linear-gradient(90deg,rgba(0,0,0,0.08),transparent_30%)]" />
       <div className="relative mx-auto grid max-w-7xl items-stretch gap-0 px-6 py-10 lg:grid-cols-[0.95fr_1.05fr] lg:px-10 lg:py-0">
         <div className="flex items-center py-8 lg:py-12">
@@ -132,7 +117,7 @@ function AboutHero() {
             <div className="mt-8 flex items-center gap-4">
               <PeopleIcon className="h-16 w-16 text-white" />
               <h2 className="text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl">
-                Student <span className="text-[#ffb129]">Project Centre</span>
+                X <span className="text-[#ffb129]">X X</span>
               </h2>
             </div>
 
@@ -148,14 +133,6 @@ function AboutHero() {
 
         <div className="relative min-h-[320px] lg:min-h-[430px]">
           <div className="absolute inset-y-0 left-0 z-10 hidden w-24 bg-gradient-to-r from-[#123f82] via-[#123f82]/60 to-transparent lg:block" />
-          <Image
-            src="/hero.png"
-            alt="Students working together on electronics projects"
-            fill
-            priority
-            sizes="(max-width: 1024px) 100vw, 55vw"
-            className="object-cover"
-          />
         </div>
       </div>
     </section>
@@ -296,8 +273,8 @@ function AboutFooter() {
             <div className="flex items-center gap-3">
               <CubeLogo />
               <div className="text-xl font-bold">
-                <span className="text-white">Student </span>
-                <span className="text-[#f5a025]">Project Centre</span>
+                <span className="text-white">X </span>
+                <span className="text-[#f5a025]">X X</span>
               </div>
             </div>
             <p className="mt-5 max-w-xs text-lg leading-8 text-white/88">
@@ -326,7 +303,7 @@ function AboutFooter() {
               </div>
               <div className="flex items-start gap-3">
                 <MailIcon className="mt-1 h-5 w-5 shrink-0" />
-                <span>info@studentprojectcentre.com</span>
+                <span>info@XXX.com</span>
               </div>
               <div className="flex items-start gap-3">
                 <PinIcon className="mt-1 h-5 w-5 shrink-0" />
@@ -355,7 +332,7 @@ function AboutFooter() {
         </div>
 
         <p className="pt-5 text-center text-lg text-white/90">
-          © 2025 Student Project Centre. All rights reserved.
+          © 2025 X X X. All rights reserved.
         </p>
       </div>
     </footer>

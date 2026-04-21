@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import Navbar from "../components/Navbar";
 
 const navItems = [
   { label: "Home", href: "/" },
@@ -91,29 +92,13 @@ function ProjectsHeader() {
             <CubeLogo />
           </div>
           <div className="text-xl font-bold tracking-tight sm:text-2xl">
-            <span className="text-white">Student </span>
-            <span className="text-[#f6a028]">Project Centre</span>
+            <span className="text-white">X </span>
+            <span className="text-[#f6a028]">X X</span>
           </div>
         </div>
 
         <div className="flex items-center gap-6 lg:gap-8">
-          <nav className="hidden items-center gap-8 text-base font-bold lg:flex">
-            {navItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`transition hover:text-[#ffd18a] ${
-                  item.href === "/project" ? "border-b-2 border-white pb-1 text-white" : "text-white/95"
-                }`}
-              >
-                {item.label}
-              </Link>
-            ))}
-          </nav>
-
-          <button className="rounded-md bg-[linear-gradient(180deg,#f6a028_0%,#ea7d16_100%)] px-5 py-2.5 text-sm font-bold text-white shadow-[0_8px_20px_rgba(234,125,22,0.35)] transition hover:brightness-105">
-            Login
-          </button>
+          <Navbar />
         </div>
       </div>
     </header>
@@ -122,13 +107,13 @@ function ProjectsHeader() {
 
 function ProjectsHero() {
   return (
-    <section className="relative overflow-hidden bg-[linear-gradient(115deg,#123f82_0%,#0f3b7a_43%,#1a4f98_100%)]">
+    <section className="relative overflow-hidden bg-[url('/project-1.png')] bg-cover bg-center bg-[linear-gradient(115deg,#123f82_0%,#0f3b7a_43%,#1a4f98_100%)]">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(255,255,255,0.12),transparent_30%),linear-gradient(90deg,rgba(0,0,0,0.08),transparent_30%)]" />
       <div className="relative mx-auto grid max-w-7xl items-stretch gap-0 px-6 py-10 lg:grid-cols-[0.96fr_1.04fr] lg:px-10 lg:py-0">
         <div className="flex items-center py-8 lg:py-12">
           <div className="max-w-xl">
             <h1 className="text-5xl font-bold leading-tight text-white sm:text-6xl lg:text-7xl">
-              Our Student Projects
+              Our X X
             </h1>
             <p className="mt-8 text-lg leading-8 text-white/90 sm:text-2xl sm:leading-9">
               Explore innovative projects created by our talented students.
@@ -145,16 +130,10 @@ function ProjectsHero() {
           </div>
         </div>
 
-        <div className="relative min-h-[320px] lg:min-h-[390px]">
+        <div
+          className="relative min-h-[320px] overflow-hidden bg-cover bg-center lg:min-h-[390px]"
+        >
           <div className="absolute inset-y-0 left-0 z-10 hidden w-24 bg-gradient-to-r from-[#123f82] via-[#123f82]/60 to-transparent lg:block" />
-          <Image
-            src="https://images.unsplash.com/photo-1561144257-e32e8efc6c4f?auto=format&fit=crop&w=1400&q=80"
-            alt="3D printer showcasing a student engineering project"
-            fill
-            priority
-            sizes="(max-width: 1024px) 100vw, 55vw"
-            className="object-cover"
-          />
         </div>
       </div>
     </section>
@@ -169,11 +148,10 @@ function ProjectsFilterBar() {
           {categories.map((category, index) => (
             <button
               key={category}
-              className={`border-[#dde4ef] px-4 py-5 text-center text-lg font-bold transition ${
-                index === 0
+              className={`border-[#dde4ef] px-4 py-5 text-center text-lg font-bold transition ${index === 0
                   ? "bg-[linear-gradient(180deg,#f7a12a_0%,#ef8217_100%)] text-white"
                   : "border-l text-[#21498d] hover:bg-[#f8fbff]"
-              }`}
+                }`}
             >
               {category}
             </button>
@@ -251,11 +229,10 @@ function PageButton({
 }) {
   return (
     <button
-      className={`rounded-md border px-4 py-2.5 text-base transition ${
-        active
+      className={`rounded-md border px-4 py-2.5 text-base transition ${active
           ? "border-[#1f5aad] bg-[#1f5aad] font-bold text-white"
           : "border-[#d6deea] bg-white text-[#4a556b] hover:border-[#1f5aad] hover:text-[#1f5aad]"
-      }`}
+        }`}
     >
       {label}
     </button>
@@ -271,8 +248,8 @@ function ProjectsFooter() {
             <div className="flex items-center gap-3">
               <CubeLogo />
               <div className="text-xl font-bold">
-                <span className="text-white">Student </span>
-                <span className="text-[#f5a025]">Project Centre</span>
+                <span className="text-white">X </span>
+                <span className="text-[#f5a025]">X X</span>
               </div>
             </div>
             <p className="mt-5 max-w-xs text-lg leading-8 text-white/88">
@@ -301,7 +278,7 @@ function ProjectsFooter() {
               </div>
               <div className="flex items-start gap-3">
                 <MailIcon className="mt-1 h-5 w-5 shrink-0" />
-                <span>info@studentprojectcentre.com</span>
+                <span>info@XXX.com</span>
               </div>
               <div className="flex items-start gap-3">
                 <PinIcon className="mt-1 h-5 w-5 shrink-0" />
@@ -330,7 +307,7 @@ function ProjectsFooter() {
         </div>
 
         <p className="pt-5 text-center text-lg text-white/90">
-          © 2025 Student Project Centre. All rights reserved.
+          © 2025 X X X. All rights reserved.
         </p>
       </div>
     </footer>

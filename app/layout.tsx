@@ -22,7 +22,7 @@ export default function RootLayout({
       lang="en"
       className={poppins.className}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col" cz-shortcut-listen="true">{children}</body>
     </html>
   );
 }

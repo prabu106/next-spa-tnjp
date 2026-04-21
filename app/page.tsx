@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import type { ComponentType } from "react";
 import { CallToActionSection } from "./service/page";
+import Navbar from "./components/Navbar";
 
 const navItems = [
   { label: "Home", href: "/" },
@@ -100,29 +101,13 @@ function Header() {
             <CubeLogo />
           </div>
           <div className="text-xl font-bold tracking-tight sm:text-2xl">
-            <span className="text-white">Student </span>
-            <span className="text-[#f6a028]">Project Centre</span>
+            <span className="text-white">X </span>
+            <span className="text-[#f6a028]">X X</span>
           </div>
         </div>
 
         <div className="flex items-center gap-6 lg:gap-8">
-          <nav className="hidden items-center gap-8 text-base font-bold lg:flex">
-            {navItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`transition hover:text-[#ffd18a] ${
-                  item.href === "/" ? "border-b-2 border-white pb-1 text-white" : "text-white/95"
-                }`}
-              >
-                {item.label}
-              </Link>
-            ))}
-          </nav>
-
-          <button className="rounded-md bg-[linear-gradient(180deg,#f6a028_0%,#ea7d16_100%)] px-5 py-2.5 text-sm font-bold text-white shadow-[0_8px_20px_rgba(234,125,22,0.35)] transition hover:brightness-105">
-            Login
-          </button>
+          <Navbar />
         </div>
       </div>
     </header>
@@ -133,7 +118,7 @@ function HeroSection() {
   return (
     <section
       id="home"
-      className="relative overflow-hidden bg-[linear-gradient(135deg,#154b97_0%,#0f3f83_45%,#164e9f_100%)] bg-[url('/hero.png')] bg-top bg-center"
+      className="relative overflow-hidden bg-[linear-gradient(135deg,#154b97_0%,#0f3f83_45%,#164e9f_100%)] overflow-hidden bg-[url('/hero.png')] bg-cover bg-center"
     >
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.14),transparent_36%),linear-gradient(120deg,rgba(255,255,255,0.08),transparent_28%)]" />
       <div className="relative mx-auto grid max-w-7xl items-stretch gap-0 px-6 py-10 lg:grid-cols-[1.05fr_1fr] lg:px-10 lg:py-0">
@@ -169,14 +154,6 @@ function HeroSection() {
 
         <div className="relative min-h-[320px] lg:min-h-[560px]">
           <div className="absolute inset-y-0 left-0 z-10 hidden w-28 bg-gradient-to-r from-[#154b97] via-[#154b97]/60 to-transparent lg:block" />
-          {/* <Image
-            src="/hero.png"
-            alt="Students building a project together"
-            fill
-            priority
-            sizes="(max-width: 1024px) 100vw, 50vw"
-            className="object-cover object-center"
-          /> */}
         </div>
       </div>
     </section>
@@ -365,8 +342,8 @@ function Footer() {
             <div className="flex items-center gap-3">
               <CubeLogo />
               <div className="text-xl font-bold">
-                <span className="text-white">Student </span>
-                <span className="text-[#f5a025]">Project Centre</span>
+                <span className="text-white">X </span>
+                <span className="text-[#f5a025]">X X</span>
               </div>
             </div>
             <p className="mt-5 max-w-xs text-lg leading-8 text-white/88">
@@ -404,7 +381,7 @@ function Footer() {
               </div>
               <div className="flex items-start gap-3">
                 <MailIcon className="mt-1 h-5 w-5 shrink-0" />
-                <span>info@studentprojectcentre.com</span>
+                <span>info@XXX.com</span>
               </div>
               <div className="flex items-start gap-3">
                 <PinIcon className="mt-1 h-5 w-5 shrink-0" />
@@ -433,7 +410,7 @@ function Footer() {
         </div>
 
         <p className="pt-5 text-center text-lg text-white/90">
-          ? 2025 Student Project Centre. All rights reserved.
+          ? 2025 x x x. All rights reserved.
         </p>
       </div>
     </footer>
