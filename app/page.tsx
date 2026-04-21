@@ -1,7 +1,13 @@
+import Link from "next/link";
 import Image from "next/image";
 import type { ComponentType } from "react";
 
-const navItems = ["Home", "About Us", "Projects", "Resources", "Contact"];
+const navItems = [
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Project", href: "/project" },
+  { label: "Contact", href: "/contact" },
+];
 
 const featureCards = [
   {
@@ -94,16 +100,16 @@ function Header() {
         </div>
 
         <nav className="hidden items-center gap-8 text-sm font-semibold lg:flex">
-          {navItems.map((item, index) => (
-            <a
-              key={item}
-              href={`#${item.toLowerCase().replace(/\s+/g, "-")}`}
+          {navItems.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
               className={`transition hover:text-[#ffd18a] ${
-                index === 0 ? "border-b-2 border-white pb-1 text-white" : "text-white/90"
+                item.href === "/" ? "border-b-2 border-white pb-1 text-white" : "text-white/90"
               }`}
             >
-              {item}
-            </a>
+              {item.label}
+            </Link>
           ))}
         </nav>
 

@@ -1,6 +1,12 @@
+import Link from "next/link";
 import Image from "next/image";
 
-const navItems = ["Home", "About Us", "Projects", "Contact"];
+const navItems = [
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Project", href: "/project" },
+  { label: "Contact", href: "/contact" },
+];
 
 const categories = [
   "All Projects",
@@ -84,18 +90,18 @@ function ProjectsHeader() {
         </div>
 
         <nav className="hidden items-center gap-8 text-sm font-medium lg:flex">
-          {navItems.map((item, index) => (
-            <a
-              key={item}
-              href="#"
+          {navItems.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
               className={`border-b-2 pb-1 transition ${
-                index === 2
+                item.href === "/project"
                   ? "border-[#f5a025] text-white"
                   : "border-transparent text-white/90 hover:text-[#ffd189]"
               }`}
             >
-              {item}
-            </a>
+              {item.label}
+            </Link>
           ))}
         </nav>
 
