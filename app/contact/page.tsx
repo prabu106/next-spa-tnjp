@@ -8,7 +8,12 @@ const navItems = [
   { label: "Project", href: "/project" },
   { label: "Contact", href: "/contact" },
 ];
-const quickLinks = ["Home", "About Us", "Projects", "Contact"];
+const quickLinks = [
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Project", href: "/project" },
+  { label: "Contact", href: "/contact" },
+];
 
 const contactDetails = [
   {
@@ -45,7 +50,7 @@ export default function ContactPage() {
   );
 }
 
-function ContactHeader() {
+function ContactHeader1() {
   return (
     <header className="bg-[linear-gradient(180deg,#103a78_0%,#0d326a_100%)] text-white shadow-lg">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-5 lg:px-10">
@@ -74,6 +79,42 @@ function ContactHeader() {
         </nav>
 
         <button className="rounded-md bg-[linear-gradient(180deg,#f7a32d_0%,#ef8419_100%)] px-5 py-2.5 text-sm font-bold text-white shadow-[0_10px_22px_rgba(239,132,25,0.35)]">
+          Login
+        </button>
+      </div>
+    </header>
+  );
+}
+
+function ContactHeader() {
+  return (
+    <header className="relative z-10 border-b border-white/10 bg-[linear-gradient(180deg,#174c99_0%,#0e3f87_100%)] text-white shadow-lg">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-4 lg:px-10">
+        <div className="flex items-center gap-3">
+          <div className="grid h-12 w-12 place-items-center rounded-xl bg-white/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.3)]">
+            <CubeLogo />
+          </div>
+          <div className="text-xl font-bold tracking-tight sm:text-2xl">
+            <span className="text-white">Student </span>
+            <span className="text-[#f6a028]">Project Centre</span>
+          </div>
+        </div>
+
+        <nav className="hidden items-center gap-8 text-sm font-semibold lg:flex">
+          {navItems.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className={`transition hover:text-[#ffd18a] ${
+                item.href === "/contact" ? "border-b-2 border-white pb-1 text-white" : "text-white/90"
+              }`}
+            >
+              {item.label}
+            </Link>
+          ))}
+        </nav>
+
+        <button className="rounded-md bg-[linear-gradient(180deg,#f6a028_0%,#ea7d16_100%)] px-5 py-2.5 text-sm font-bold text-white shadow-[0_8px_20px_rgba(234,125,22,0.35)] transition hover:brightness-105">
           Login
         </button>
       </div>
@@ -278,9 +319,9 @@ function ContactFooter() {
             <h3 className="text-2xl font-bold">Quick Links</h3>
             <div className="mt-4 space-y-3 text-lg text-white/92">
               {quickLinks.map((link) => (
-                <a key={link} href="#" className="block hover:text-[#ffd189]">
-                  {link}
-                </a>
+                <Link key={link.href} href={link.href} className="block hover:text-[#ffd189]">
+                  {link.label}
+                </Link>
               ))}
             </div>
           </div>

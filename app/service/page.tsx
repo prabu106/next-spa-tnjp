@@ -1,12 +1,12 @@
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 import type { ComponentType } from "react";
-import { CallToActionSection } from "./service/page";
 
 const navItems = [
   { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
-  { label: "Project", href: "/project" },
+  { label: "About Us", href: "/about" },
+  { label: "Projects", href: "/project" },
+  { label: "Resources", href: "/service" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -70,14 +70,17 @@ const reasons = [
   },
 ];
 
-const footerLinks = [
+const quickLinks = [
   { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
-  { label: "Project", href: "/project" },
-  { label: "Contact", href: "/contact" },
+  { label: "About Us", href: "/about" },
+  { label: "Projects", href: "/project" },
+  { label: "Resources", href: "/service" },
+  { label: "Contact Us", href: "/contact" },
 ];
 
-export default function HomePage() {
+const resourceLinks = ["Workshops", "Guides", "Tools", "FAQ", "Blog"];
+
+export default function ServicePage() {
   return (
     <main className="min-h-screen bg-[#f5f7fb] text-[#1d2b4f]">
       <Header />
@@ -110,8 +113,10 @@ function Header() {
             <Link
               key={item.href}
               href={item.href}
-              className={`transition hover:text-[#ffd18a] ${
-                item.href === "/" ? "border-b-2 border-white pb-1 text-white" : "text-white/90"
+              className={`transition ${
+                item.href === "/service"
+                  ? "border-b-2 border-[#f6a028] pb-1 text-white"
+                  : "text-white/90 hover:text-[#ffd18a]"
               }`}
             >
               {item.label}
@@ -129,10 +134,7 @@ function Header() {
 
 function HeroSection() {
   return (
-    <section
-      id="home"
-      className="relative overflow-hidden bg-[linear-gradient(135deg,#154b97_0%,#0f3f83_45%,#164e9f_100%)] bg-[url('/hero.png')] bg-top bg-center"
-    >
+    <section className="relative overflow-hidden bg-[linear-gradient(135deg,#154b97_0%,#0f3f83_45%,#164e9f_100%)]">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.14),transparent_36%),linear-gradient(120deg,rgba(255,255,255,0.08),transparent_28%)]" />
       <div className="relative mx-auto grid max-w-7xl items-stretch gap-0 px-6 py-10 lg:grid-cols-[1.05fr_1fr] lg:px-10 lg:py-0">
         <div className="flex items-center py-10 lg:py-16">
@@ -149,32 +151,32 @@ function HeroSection() {
             </p>
 
             <div className="mt-8 flex flex-wrap gap-4">
-              <a
-                href="#contact"
+              <Link
+                href="/contact"
                 className="rounded-lg bg-[linear-gradient(180deg,#f7a12a_0%,#ee7e14_100%)] px-8 py-3.5 text-base font-bold text-white shadow-[0_10px_22px_rgba(238,126,20,0.35)] transition hover:-translate-y-0.5"
               >
                 Get Started
-              </a>
-              <a
-                href="#projects"
+              </Link>
+              <Link
+                href="/project"
                 className="rounded-lg bg-white px-8 py-3.5 text-base font-bold text-[#234e91] shadow-[0_10px_24px_rgba(7,27,72,0.24)] transition hover:-translate-y-0.5"
               >
                 Learn More
-              </a>
+              </Link>
             </div>
           </div>
         </div>
 
         <div className="relative min-h-[320px] lg:min-h-[560px]">
           <div className="absolute inset-y-0 left-0 z-10 hidden w-28 bg-gradient-to-r from-[#154b97] via-[#154b97]/60 to-transparent lg:block" />
-          {/* <Image
+          <Image
             src="/hero.png"
             alt="Students building a project together"
             fill
             priority
             sizes="(max-width: 1024px) 100vw, 50vw"
             className="object-cover object-center"
-          /> */}
+          />
         </div>
       </div>
     </section>
@@ -221,7 +223,7 @@ function FeatureCard({
 
 function ProjectsSection() {
   return (
-    <section id="projects" className="mx-auto max-w-7xl px-6 py-10 lg:px-10 lg:py-14">
+    <section className="mx-auto max-w-7xl px-6 py-10 lg:px-10 lg:py-14">
       <SectionHeading
         title="Recent Projects"
         description="Check out what our students have been working on."
@@ -259,8 +261,8 @@ function ProjectCard({
         <h3 className="border-b border-[#d9e2ef] pb-3 text-2xl font-bold text-[#21498d]">
           {title}
         </h3>
-        <p className="pt-4 text-base leading-7 text-[#37435f]">{description}</p>
-        <button className="mt-5 rounded-md bg-[linear-gradient(180deg,#1f5aad_0%,#144487_100%)] px-6 py-2.5 text-sm font-bold text-white shadow-[0_10px_24px_rgba(19,68,135,0.25)] transition hover:brightness-110">
+        <p className="pt-4 text-base leading-7 text-[#394763]">{description}</p>
+        <button className="mt-5 rounded-md bg-[linear-gradient(180deg,#1d57aa_0%,#134587_100%)] px-5 py-2.5 text-base font-bold text-white shadow-[0_8px_18px_rgba(19,69,135,0.28)]">
           View Project
         </button>
       </div>
@@ -270,17 +272,15 @@ function ProjectCard({
 
 function WhyChooseUsSection() {
   return (
-    <section className="bg-[linear-gradient(180deg,#f3f6fc_0%,#eef2f8_100%)] py-12 lg:py-16">
-      <div className="mx-auto max-w-7xl px-6 lg:px-10">
-        <SectionHeading
-          title="Why Choose Us?"
-          description="Providing the best environment for student innovation."
-        />
-        <div className="mt-10 grid gap-8 lg:grid-cols-3">
-          {reasons.map((reason) => (
-            <ReasonCard key={reason.title} {...reason} />
-          ))}
-        </div>
+    <section className="mx-auto max-w-7xl px-6 py-8 lg:px-10 lg:py-12">
+      <SectionHeading
+        title="Why Choose Us?"
+        description="Providing the best environment for student innovation."
+      />
+      <div className="mt-10 grid gap-8 md:grid-cols-3">
+        {reasons.map((reason, index) => (
+          <ReasonCard key={reason.title} {...reason} bordered={index < reasons.length - 1} />
+        ))}
       </div>
     </section>
   );
@@ -290,64 +290,46 @@ function ReasonCard({
   title,
   description,
   icon: Icon,
+  bordered,
 }: {
   title: string;
   description: string;
   icon: ComponentType<{ className?: string }>;
+  bordered: boolean;
 }) {
   return (
-    <article className="rounded-2xl bg-white/70 px-6 py-8 text-center shadow-[0_10px_28px_rgba(30,48,90,0.08)] backdrop-blur-sm">
-      <div className="mx-auto grid h-20 w-20 place-items-center rounded-full bg-[linear-gradient(180deg,#1e5fb6_0%,#154588_100%)] text-white shadow-[0_14px_30px_rgba(21,69,136,0.24)]">
-        <Icon className="h-9 w-9" />
+    <article className={`px-4 text-center md:px-8 ${bordered ? "md:border-r md:border-[#d9e1ee]" : ""}`}>
+      <div className="mx-auto grid h-16 w-16 place-items-center rounded-full bg-[#1d56aa] text-white">
+        <Icon className="h-8 w-8" />
       </div>
-      <h3 className="mt-6 text-2xl font-bold text-[#21498d]">{title}</h3>
-      <p className="mt-3 text-base leading-7 text-[#3c4862]">{description}</p>
+      <h3 className="mt-5 text-2xl font-bold text-[#21498d]">{title}</h3>
+      <p className="mt-3 text-base leading-7 text-[#404d67]">{description}</p>
     </article>
   );
 }
 
-function ContactSection() {
+export function CallToActionSection() {
   return (
-    <section id="contact" className="mx-auto max-w-7xl px-6 py-12 lg:px-10 lg:py-16">
-      <div className="grid gap-8 lg:grid-cols-[1.35fr_0.95fr]">
+    <section className="mx-auto max-w-7xl px-6 pb-10 lg:px-10 lg:pb-12">
+      <div className="grid items-center gap-8 rounded-2xl bg-[#dfe8f7] px-8 py-8 shadow-[0_12px_26px_rgba(27,51,101,0.08)] lg:grid-cols-[0.95fr_1.05fr] lg:px-12">
         <div>
-          <SectionHeading
-            title="Get In Touch"
-            description="Have questions or need support? Contact us today!"
-          />
-          <form className="mt-8 space-y-4">
-            <Input placeholder="Your Name" />
-            <Input placeholder="Your Email" type="email" />
-            <Input placeholder="Subject" />
-            <textarea
-              placeholder="Message"
-              rows={6}
-              className="w-full rounded-md border border-[#d5deeb] bg-white px-4 py-3 text-base text-[#243250] shadow-[0_6px_16px_rgba(24,43,79,0.06)] outline-none transition placeholder:text-[#7d8aa8] focus:border-[#2a5cac]"
-            />
-          </form>
+          <h2 className="text-4xl font-bold tracking-tight text-[#183f83] sm:text-5xl">
+            Ready to Start Your Project?
+          </h2>
+          <p className="mt-4 max-w-xl text-lg leading-8 text-[#3d4a65]">
+            Join thousands of students who are building the future with creativity and
+            innovation.
+          </p>
+          <Link
+            href="/contact"
+            className="mt-7 inline-flex rounded-md bg-[linear-gradient(180deg,#1d57aa_0%,#134587_100%)] px-7 py-3.5 text-lg font-bold text-white shadow-[0_10px_24px_rgba(19,69,135,0.22)]"
+          >
+            Get Started Now
+          </Link>
         </div>
 
-        <div className="rounded-xl bg-[linear-gradient(180deg,#1d5aa7_0%,#0f3e7e_100%)] p-8 text-white shadow-[0_18px_36px_rgba(16,51,105,0.28)]">
-          <h3 className="text-4xl font-bold leading-tight">Get In Touch</h3>
-          <p className="mt-3 text-base text-white/85">
-            Have questions or need support? Contact us today!
-          </p>
-
-          <form className="mt-8 space-y-4">
-            <DarkInput placeholder="Your Name" />
-            <DarkInput placeholder="Your Email" type="email" />
-            <DarkInput placeholder="Subject" />
-            <textarea
-              placeholder="Message"
-              rows={5}
-              className="w-full rounded-md border border-white/30 bg-white px-4 py-3 text-base text-[#243250] outline-none transition placeholder:text-[#7d8aa8] focus:border-[#ffd18a]"
-            />
-            <div className="pt-2 text-center">
-              <button className="rounded-md bg-[linear-gradient(180deg,#f7a02b_0%,#ea7e18_100%)] px-8 py-3 text-lg font-bold text-white shadow-[0_10px_24px_rgba(238,126,20,0.35)] transition hover:brightness-105">
-                Send Message
-              </button>
-            </div>
-          </form>
+        <div className="flex justify-center lg:justify-end">
+          <CollaborationIllustration />
         </div>
       </div>
     </section>
@@ -356,44 +338,50 @@ function ContactSection() {
 
 function Footer() {
   return (
-    <footer className="bg-[linear-gradient(180deg,#103a78_0%,#0d326a_100%)] text-white">
+    <footer className="bg-[linear-gradient(180deg,#153f7b_0%,#0c2f64_100%)] text-white">
       <div className="mx-auto max-w-7xl px-6 py-8 lg:px-10 lg:py-10">
-        <div className="grid gap-8 border-b border-white/20 pb-8 md:grid-cols-2 xl:grid-cols-4">
-          <div className="pr-4 xl:border-r xl:border-white/20">
+        <div className="grid gap-8 border-b border-white/15 pb-8 md:grid-cols-2 xl:grid-cols-4">
+          <div className="xl:border-r xl:border-white/15 xl:pr-8">
             <div className="flex items-center gap-3">
               <CubeLogo />
               <div className="text-xl font-bold">
                 <span className="text-white">Student </span>
-                <span className="text-[#f5a025]">Project Centre</span>
+                <span className="text-[#f6a028]">Project Centre</span>
               </div>
             </div>
             <p className="mt-5 max-w-xs text-lg leading-8 text-white/88">
               Empowering students to innovate, create, and lead through hands-on
               learning and real-world projects.
             </p>
-            <div className="mt-6 flex gap-4">
-              <SocialIcon label="f" className="bg-[#2d68d8]" />
-              <SocialIcon label="t" className="bg-[#35a8ff]" />
-              <SocialIcon
-                label="ig"
-                className="bg-[linear-gradient(180deg,#ff5f6d_0%,#ff7f11_100%)]"
-              />
-              <SocialIcon label="in" className="bg-[#2a7abf]" />
+            <div className="mt-6 flex flex-wrap gap-3">
+              <SocialIcon label="f" className="bg-[#4167b2]" />
+              <SocialIcon label="t" className="bg-[#1da1f2]" />
+              <SocialIcon label="ig" className="bg-[linear-gradient(180deg,#ff5f6d_0%,#ff7f11_100%)]" />
+              <SocialIcon label="in" className="bg-[#0a66c2]" />
             </div>
           </div>
 
-          <div className="xl:border-r xl:border-white/20 xl:px-8">
+          <div className="xl:border-r xl:border-white/15 xl:px-8">
             <h3 className="text-2xl font-bold">Quick Links</h3>
             <div className="mt-4 space-y-3 text-lg text-white/92">
-              {footerLinks.map((link) => (
-                <Link key={link.href} href={link.href} className="block hover:text-[#ffd189]">
+              {quickLinks.map((link) => (
+                <Link key={link.href} href={link.href} className="block hover:text-[#ffd18a]">
                   {link.label}
                 </Link>
               ))}
             </div>
           </div>
 
-          <div className="xl:border-r xl:border-white/20 xl:px-8">
+          <div className="xl:border-r xl:border-white/15 xl:px-8">
+            <h3 className="text-2xl font-bold">Resources</h3>
+            <div className="mt-4 space-y-3 text-lg text-white/92">
+              {resourceLinks.map((item) => (
+                <p key={item}>{item}</p>
+              ))}
+            </div>
+          </div>
+
+          <div className="xl:pl-8">
             <h3 className="text-2xl font-bold">Contact Info</h3>
             <div className="mt-4 space-y-4 text-lg text-white/92">
               <div className="flex items-start gap-3">
@@ -410,28 +398,10 @@ function Footer() {
               </div>
             </div>
           </div>
-
-          <div className="xl:px-8">
-            <h3 className="text-2xl font-bold">Subscribe to Our Newsletter</h3>
-            <div className="mt-3 h-1 w-16 rounded-full bg-[#f5a025]" />
-            <p className="mt-4 text-lg leading-8 text-white/90">
-              Stay updated with our latest projects, workshops, and news.
-            </p>
-            <div className="mt-6 flex overflow-hidden rounded-md bg-white shadow-[0_10px_24px_rgba(0,0,0,0.14)]">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="min-w-0 flex-1 px-4 py-3 text-base text-[#243250] outline-none placeholder:text-[#7d8aa8]"
-              />
-              <button className="bg-[linear-gradient(180deg,#f7a12a_0%,#ef8217_100%)] px-5 py-3 text-base font-bold text-white">
-                Subscribe
-              </button>
-            </div>
-          </div>
         </div>
 
         <p className="pt-5 text-center text-lg text-white/90">
-          ? 2025 Student Project Centre. All rights reserved.
+          © 2025 Student Project Centre. All rights reserved.
         </p>
       </div>
     </footer>
@@ -447,44 +417,56 @@ function SectionHeading({
 }) {
   return (
     <div>
-      <div className="flex items-center gap-4">
-        <h2 className="shrink-0 text-4xl font-bold tracking-tight text-[#21498d]">{title}</h2>
-        <div className="h-px flex-1 bg-[#d7deea]" />
-      </div>
+      <h2 className="shrink-0 text-4xl font-bold tracking-tight text-[#21498d]">{title}</h2>
       <p className="mt-3 text-lg text-[#3f4b66]">{description}</p>
     </div>
   );
 }
 
-function Input({
-  placeholder,
-  type = "text",
-}: {
-  placeholder: string;
-  type?: string;
-}) {
+function CollaborationIllustration() {
   return (
-    <input
-      type={type}
-      placeholder={placeholder}
-      className="w-full rounded-md border border-[#d5deeb] bg-white px-4 py-3 text-base text-[#243250] shadow-[0_6px_16px_rgba(24,43,79,0.06)] outline-none transition placeholder:text-[#7d8aa8] focus:border-[#2a5cac]"
-    />
+    <svg
+      viewBox="0 0 520 220"
+      fill="none"
+      aria-hidden="true"
+      className="h-auto w-full max-w-[380px]"
+    >
+      <ellipse cx="260" cy="188" rx="178" ry="20" fill="#cddbf0" />
+      <circle cx="122" cy="54" r="12" fill="#aec2e4" />
+      <circle cx="168" cy="30" r="8" fill="#aec2e4" />
+      <circle cx="392" cy="50" r="14" fill="#aec2e4" />
+      <circle cx="440" cy="86" r="10" fill="#aec2e4" />
+      <circle cx="304" cy="34" r="24" fill="#f6b238" />
+      <path d="M304 18v20m-10-10h20" stroke="#fff" strokeWidth="4" strokeLinecap="round" />
+      <circle cx="166" cy="92" r="22" fill="#173f82" />
+      <circle cx="236" cy="82" r="24" fill="#f6b238" />
+      <circle cx="308" cy="92" r="22" fill="#173f82" />
+      <circle cx="378" cy="88" r="22" fill="#f6b238" />
+      <rect x="144" y="108" width="44" height="58" rx="18" fill="#4478c9" />
+      <rect x="212" y="102" width="48" height="64" rx="18" fill="#173f82" />
+      <rect x="284" y="110" width="46" height="56" rx="18" fill="#4478c9" />
+      <rect x="354" y="106" width="48" height="60" rx="18" fill="#173f82" />
+      <rect x="140" y="148" width="54" height="12" rx="6" fill="#0d2f63" />
+      <rect x="208" y="144" width="58" height="16" rx="8" fill="#0d2f63" />
+      <rect x="280" y="148" width="56" height="12" rx="6" fill="#0d2f63" />
+      <rect x="350" y="146" width="58" height="14" rx="7" fill="#0d2f63" />
+    </svg>
   );
 }
 
-function DarkInput({
-  placeholder,
-  type = "text",
+function SocialIcon({
+  label,
+  className,
 }: {
-  placeholder: string;
-  type?: string;
+  label: string;
+  className: string;
 }) {
   return (
-    <input
-      type={type}
-      placeholder={placeholder}
-      className="w-full rounded-md border border-white/30 bg-white px-4 py-3 text-base text-[#243250] outline-none transition placeholder:text-[#7d8aa8] focus:border-[#ffd18a]"
-    />
+    <div
+      className={`grid h-12 w-12 place-items-center rounded-md text-base font-bold uppercase text-white shadow-[0_8px_18px_rgba(0,0,0,0.18)] ${className}`}
+    >
+      {label}
+    </div>
   );
 }
 
@@ -510,8 +492,18 @@ function PresentationIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 48 48" fill="none" aria-hidden="true" className={className}>
       <rect x="8" y="8" width="32" height="22" rx="2" stroke="currentColor" strokeWidth="3" />
-      <path d="M24 30v10m-7 0h14M14 40l10-10 10 10" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
-      <path d="M18 18h12m-6-4v8" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+      <path
+        d="M24 30v10m-7 0h14M14 40l10-10 10 10"
+        stroke="currentColor"
+        strokeWidth="3"
+        strokeLinecap="round"
+      />
+      <path
+        d="M18 18h12m-6-4v8"
+        stroke="currentColor"
+        strokeWidth="3"
+        strokeLinecap="round"
+      />
     </svg>
   );
 }
@@ -534,7 +526,13 @@ function MonitorIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 48 48" fill="none" aria-hidden="true" className={className}>
       <rect x="6" y="8" width="36" height="24" rx="3" stroke="currentColor" strokeWidth="3" />
-      <path d="M18 40h12m-6-8v8M14 18h9l3 4h8" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+      <path
+        d="M18 40h12m-6-8v8M14 18h9l3 4h8"
+        stroke="currentColor"
+        strokeWidth="3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
     </svg>
   );
 }
@@ -543,7 +541,12 @@ function MentorIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 48 48" fill="none" aria-hidden="true" className={className}>
       <circle cx="24" cy="14" r="6" fill="currentColor" />
-      <path d="M14 38c0-5.5 4.5-10 10-10s10 4.5 10 10M10 22h28" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+      <path
+        d="M14 38c0-5.5 4.5-10 10-10s10 4.5 10 10M10 22h28"
+        stroke="currentColor"
+        strokeWidth="3"
+        strokeLinecap="round"
+      />
     </svg>
   );
 }
@@ -552,7 +555,12 @@ function FacilityIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 48 48" fill="none" aria-hidden="true" className={className}>
       <rect x="8" y="10" width="32" height="24" rx="3" stroke="currentColor" strokeWidth="3" />
-      <path d="M16 18h8v8h-8zm12 0h4m-4 8h8M14 38h20" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+      <path
+        d="M16 18h8v8h-8zm12 0h4m-4 8h8M14 38h20"
+        stroke="currentColor"
+        strokeWidth="3"
+        strokeLinecap="round"
+      />
     </svg>
   );
 }
@@ -560,26 +568,14 @@ function FacilityIcon({ className }: { className?: string }) {
 function ResourceIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 48 48" fill="none" aria-hidden="true" className={className}>
-      <path d="M8 14h14v20H8zM26 14h14v8H26zM26 26h14v8H26z" stroke="currentColor" strokeWidth="3" strokeLinejoin="round" />
+      <path
+        d="M8 14h14v20H8zM26 14h14v8H26zM26 26h14v8H26z"
+        stroke="currentColor"
+        strokeWidth="3"
+        strokeLinejoin="round"
+      />
       <path d="M22 24h4" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
     </svg>
-  );
-}
-
-
-function SocialIcon({
-  label,
-  className,
-}: {
-  label: string;
-  className: string;
-}) {
-  return (
-    <div
-      className={`grid h-12 w-12 place-items-center rounded-lg text-lg font-bold uppercase text-white shadow-[0_10px_24px_rgba(0,0,0,0.18)] ${className}`}
-    >
-      {label}
-    </div>
   );
 }
 

@@ -62,7 +62,12 @@ const projects = [
   },
 ];
 
-const quickLinks = ["Home", "About Us", "Projects", "Contact Us"];
+const quickLinks = [
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Project", href: "/project" },
+  { label: "Contact", href: "/contact" },
+];
 
 export default function ProjectPage() {
   return (
@@ -79,25 +84,25 @@ export default function ProjectPage() {
 
 function ProjectsHeader() {
   return (
-    <header className="bg-[linear-gradient(180deg,#103a78_0%,#0d326a_100%)] text-white shadow-lg">
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-5 lg:px-10">
+    <header className="relative z-10 border-b border-white/10 bg-[linear-gradient(180deg,#174c99_0%,#0e3f87_100%)] text-white shadow-lg">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-4 lg:px-10">
         <div className="flex items-center gap-3">
-          <CubeLogo />
+          <div className="grid h-12 w-12 place-items-center rounded-xl bg-white/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.3)]">
+            <CubeLogo />
+          </div>
           <div className="text-xl font-bold tracking-tight sm:text-2xl">
             <span className="text-white">Student </span>
-            <span className="text-[#f5a025]">Project Centre</span>
+            <span className="text-[#f6a028]">Project Centre</span>
           </div>
         </div>
 
-        <nav className="hidden items-center gap-8 text-sm font-medium lg:flex">
+        <nav className="hidden items-center gap-8 text-sm font-semibold lg:flex">
           {navItems.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className={`border-b-2 pb-1 transition ${
-                item.href === "/project"
-                  ? "border-[#f5a025] text-white"
-                  : "border-transparent text-white/90 hover:text-[#ffd189]"
+              className={`transition hover:text-[#ffd18a] ${
+                item.href === "/project" ? "border-b-2 border-white pb-1 text-white" : "text-white/90"
               }`}
             >
               {item.label}
@@ -105,7 +110,7 @@ function ProjectsHeader() {
           ))}
         </nav>
 
-        <button className="rounded-md bg-[linear-gradient(180deg,#f7a32d_0%,#ef8419_100%)] px-5 py-2.5 text-sm font-bold text-white shadow-[0_10px_22px_rgba(239,132,25,0.35)]">
+        <button className="rounded-md bg-[linear-gradient(180deg,#f6a028_0%,#ea7d16_100%)] px-5 py-2.5 text-sm font-bold text-white shadow-[0_8px_20px_rgba(234,125,22,0.35)] transition hover:brightness-105">
           Login
         </button>
       </div>
@@ -278,9 +283,9 @@ function ProjectsFooter() {
             <h3 className="text-2xl font-bold">Quick Links</h3>
             <div className="mt-4 space-y-3 text-lg text-white/92">
               {quickLinks.map((link) => (
-                <a key={link} href="#" className="block hover:text-[#ffd189]">
-                  {link}
-                </a>
+                <Link key={link.href} href={link.href} className="block hover:text-[#ffd189]">
+                  {link.label}
+                </Link>
               ))}
             </div>
           </div>
@@ -304,15 +309,20 @@ function ProjectsFooter() {
           </div>
 
           <div className="xl:px-8">
-            <h3 className="text-2xl font-bold">Follow Us</h3>
-            <div className="mt-5 flex flex-wrap gap-4">
-              <SocialIcon label="f" className="bg-[#2d68d8]" />
-              <SocialIcon label="t" className="bg-[#35a8ff]" />
-              <SocialIcon
-                label="ig"
-                className="bg-[linear-gradient(180deg,#ff5f6d_0%,#ff7f11_100%)]"
+            <h3 className="text-2xl font-bold">Subscribe to Our Newsletter</h3>
+            <div className="mt-3 h-1 w-16 rounded-full bg-[#f5a025]" />
+            <p className="mt-4 text-lg leading-8 text-white/90">
+              Stay updated with our latest projects, workshops, and news.
+            </p>
+            <div className="mt-6 flex overflow-hidden rounded-md bg-white shadow-[0_10px_24px_rgba(0,0,0,0.14)]">
+              <input
+                type="email"
+                placeholder="Enter your email"
+                className="min-w-0 flex-1 px-4 py-3 text-base text-[#243250] outline-none placeholder:text-[#7d8aa8]"
               />
-              <SocialIcon label="in" className="bg-[#2a7abf]" />
+              <button className="bg-[linear-gradient(180deg,#f7a12a_0%,#ef8217_100%)] px-5 py-3 text-base font-bold text-white">
+                Subscribe
+              </button>
             </div>
           </div>
         </div>
@@ -322,22 +332,6 @@ function ProjectsFooter() {
         </p>
       </div>
     </footer>
-  );
-}
-
-function SocialIcon({
-  label,
-  className,
-}: {
-  label: string;
-  className: string;
-}) {
-  return (
-    <div
-      className={`grid h-12 w-12 place-items-center rounded-lg text-lg font-bold uppercase text-white shadow-[0_10px_24px_rgba(0,0,0,0.18)] ${className}`}
-    >
-      {label}
-    </div>
   );
 }
 
