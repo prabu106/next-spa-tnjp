@@ -151,10 +151,6 @@ function HeroSection() {
             </div>
           </div>
         </div>
-
-        <div className="relative min-h-[320px] lg:min-h-[560px]">
-          <div className="absolute inset-y-0 left-0 z-10 hidden w-28 bg-gradient-to-r from-[#154b97] via-[#154b97]/60 to-transparent lg:block" />
-        </div>
       </div>
     </section>
   );

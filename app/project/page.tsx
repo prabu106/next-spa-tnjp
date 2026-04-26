@@ -129,12 +129,6 @@ function ProjectsHero() {
             </div>
           </div>
         </div>
-
-        <div
-          className="relative min-h-[320px] overflow-hidden bg-cover bg-center lg:min-h-[390px]"
-        >
-          <div className="absolute inset-y-0 left-0 z-10 hidden w-24 bg-gradient-to-r from-[#123f82] via-[#123f82]/60 to-transparent lg:block" />
-        </div>
       </div>
     </section>
   );

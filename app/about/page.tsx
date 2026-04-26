@@ -130,10 +130,6 @@ function AboutHero() {
             </button>
           </div>
         </div>
-
-        <div className="relative min-h-[320px] lg:min-h-[430px]">
-          <div className="absolute inset-y-0 left-0 z-10 hidden w-24 bg-gradient-to-r from-[#123f82] via-[#123f82]/60 to-transparent lg:block" />
-        </div>
       </div>
     </section>
   );

@@ -22,6 +22,10 @@ export default function RootLayout({
       lang="en"
       className={poppins.className}
     >
+      <link rel="preload" as="image" href="/aboutbanner.png" />
+      <link rel="preload" as="image" href="/contact.png" />
+      <link rel="preload" as="image" href="/hero.png" />
+      <link rel="preload" as="image" href="/project-1.png" />
       <body className="min-h-full flex flex-col" cz-shortcut-listen="true">{children}</body>
     </html>
   );
